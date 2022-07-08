@@ -1,0 +1,72 @@
+<div class="login-page" style="min-height: 496.781px;">
+  <div class="login-box bg-warning pt-5 pb-5" style="border: none; border-radius: 15px;">
+    <div class="row">
+      <div class="col-12">
+        <div class="alert alert-danger" *ngIf="loginError">
+          {{loginError}}
+       </div>
+      </div>
+    </div>
+    <div class="login-logo mb-3">
+      <h3>DJ The Blax</h3>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+  
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="input-group mb-3">
+            <input type="text" formControlName="email" class="form-control" placeholder="email" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error">
+            
+                Username is required.
+             
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" formControlName="password" class="form-control" placeholder="Password" required>
+            <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error invalid-feedback">
+              Password is required.
+            </div> 
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+            
+          </div>
+          <div class="row">
+           
+            <!-- /.col -->
+            <div class="col-4">
+              <button type="submit" [disabled]="!loginForm.valid" class="btn btn-danger">Log In</button>
+            </div>
+            <div class="col-8">
+              <div class="spinner-border text-primary" role="status" *ngIf="this.togglespinner">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-12">
+            <!-- <div class="service-error" *ngIf="error"> --> 
+              <!-- <h1>{{error.errorTitle}}</h1> -->
+              <!-- <h3>{{error.errorDesc}}</h3> -->
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- /.login-card-body -->
+
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,158 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-info elevation-4 text-sm">
+  <!-- Brand Logo -->
+  <a href="index3.html" class="brand-link">
+    <!-- <img src="../../../assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+    <span class="brand-text font-weight-bold">DJ THE BLAX</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img
+          src="{{ avatarImageUrl }}avatar.png"
+          class="img-circle elevation-2"
+          alt="User Image"
+        />
+      </div>
+
+      <div class="info">
+        <a routerLink="/dashboard" class="d-block">Dashboard</a>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
+        <!-- Add icons to the links using the .nav-icon text-sm class
+             with font-awesome or any other icon font library -->
+        <li class="nav-item">
+          <a
+            routerLink="/dashboard"
+            class="nav-link {{ router.url == '/dashboard' ? 'active' : ' ' }} "
+          >
+            <i class="nav-icon text-sm fas fa-home text-warning"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+        <!-- Cutomer Management -->
+        <li
+          class="nav-item has-treeview   {{
+            router.url == '/viewCustomer' || router.url == '/viewManufacturer'
+              ? 'menu-open'
+              : ''
+          }}"
+        >
+          <a
+            routerLink="{{ this.router.url }}"
+            class="nav-link text-white {{
+              router.url == '/viewCustomer' || router.url == '/viewManufacturer'
+                ? 'active'
+                : ''
+            }} "
+          >
+            <i class="nav-icon text-sm fas fa-layer-group text-info"></i>
+            <p class="text-white">
+              Masters
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a
+                routerLink="/viewCustomer"
+                class="nav-link {{
+                  router.url == '/viewCustomer' ? 'active' : ' '
+                }}"
+              >
+                <i class="fas fa-users nav-icon text-sm text-success"></i>
+                <p>Manage Customer</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                routerLink="/viewManufacturer"
+                class="nav-link {{
+                  router.url == '/viewManufacturer' ? 'active' : ' '
+                }}"
+              >
+                <i class="fas fa-users-cog nav-icon text-sm text-dagner"></i>
+                <p>Manage Manufaturer</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!-- Order Management -->
+        <li class="nav-item">
+          <a
+            routerLink="/viewOrder"
+            class="nav-link {{
+              router.url == '/viewOrder' || router.url == '/addOrder'
+                ? 'active'
+                : ' '
+            }} "
+          >
+            <i class="nav-icon text-sm fas fa-box text-warning"></i>
+            <p>Manage Orders</p>
+          </a>
+        </li>
+        <!-- Reports Section -->
+        <li
+          class="nav-item has-treeview   {{
+            router.url == '/pendingOrders' || router.url == '/completedOrders'
+              ? 'menu-open'
+              : ''
+          }}"
+        >
+          <a
+            class="nav-link text-white {{
+              router.url == '/pendingOrders' || router.url == '/completedOrders'
+                ? 'active'
+                : ''
+            }} "
+          >
+            <i class="nav-icon text-sm fas fa-chart-bar text-orange"></i>
+            <p>
+              Reports
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a
+                routerLink="/pendingOrders"
+                class="nav-link {{
+                  router.url == '/pendingOrders' ? 'active' : ' '
+                }}"
+              >
+                <i class="fas fa-phone nav-icon text-sm text-success"></i>
+                <p>Orders Pending Report</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                routerLink="/completedOrders"
+                class="nav-link {{
+                  router.url == '/completedOrders' ? 'active' : ' '
+                }}"
+              >
+                <i class="fas fa-calendar nav-icon text-sm text-warning"></i>
+                <p>Orders Completed Report</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+

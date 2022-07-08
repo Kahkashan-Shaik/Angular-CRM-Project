@@ -1,0 +1,237 @@
+<app-nav></app-nav>
+<app-aside></app-aside>
+<div class="content-wrapper">
+<div class="content-header">
+   <div class="container-fluid">
+      <div class="row mb-2">
+         <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+         </div>
+         <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+               <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+               <li class="breadcrumb-item active">Dashboard </li>
+            </ol>
+         </div>
+      </div>
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+               <div class="card">
+                  <div class="card-body">
+                     <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                           <a routerLink="/addOrder" class="btn btn-info mr-2 mb-2"><i class="fas fa-box mr-2"></i>Add New Order</a>
+                           <a routerLink="/viewOrder"  class="btn btn-info  mr-2 mb-2"><i class="fas fa-box mr-2"></i>View Order</a>
+                           <a routerLink="/viewOrder"  class="btn btn-info  mr-2 mb-2"><i class="fas fa-clock mr-2"></i>Pending Order</a>
+                           <a routerLink="/viewCustomer"  class="btn btn-info  mr-2 mb-2"><i class="fas fa-user mr-2"></i>Add New Customer</a>
+                           <a routerLink="/viewManufacturer"  class="btn btn-info  mr-2 mb-2"><i class="fas fa-user mr-2"></i>Add New Manufacturer</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-12 col-sm-6 col-md-3">
+                  <div class="info-box">
+                     <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+                     <div class="info-box-content">
+                        <span class="info-box-text">Total Customers</span>
+                        <span class="info-box-number">
+                        {{TotalCustomersCount}}
+                        <a routerLink="/viewCustomer" class="float-right"><i class="fas  text-lg fa-arrow-circle-right text-success"></i></a>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-12 col-sm-6 col-md-3">
+                  <div class="info-box mb-3">
+                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                     <div class="info-box-content">
+                        <span class="info-box-text">Total Manufacturers</span>
+                        <span class="info-box-number">
+                        {{TotalManufacturerCount}}
+                        <a routerLink="/viewManufacturer" class="float-right"><i class="fas  text-lg fa-arrow-circle-right text-info"></i></a>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-12 col-sm-6 col-md-3">
+                  <div class="info-box mb-3">
+                     <span class="info-box-icon bg-info elevation-1"><i class="fas fa-clock "></i></span>
+                     <div class="info-box-content">
+                        <span class="info-box-text">Pending Orders</span>
+                        <span class="info-box-number">
+                        {{TotalPendingOrderCount}}
+                        <a routerLink="/pendingOrders" class="float-right"><i class="fas  text-lg fa-arrow-circle-right text-danger"></i></a>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-12 col-sm-6 col-md-3">
+                  <div class="info-box mb-3">
+                     <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-calendar "></i></span>
+                     <div class="info-box-content">
+                        <span class="info-box-text">Completed Orders</span>
+                        <span class="info-box-number">
+                        {{TotalCompeltdOrderCount}}
+                        <a routerLink="/completedOrders" class="float-right"><i class="fas  text-lg fa-arrow-circle-right text-warning"></i></a>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-12 col-md-12 col-md-12 mb-5">
+              <div class="card card-primary card-outline">
+                 <div class="card-header">
+                    <h3 class="card-title">
+                       <i class="fas fa-edit"></i>
+                       Order Reports
+                    </h3>
+                 </div>
+                 <div class="card-body">
+                    <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+                       <li class="nav-item">
+                          <a class="nav-link active" id="tab-to-show-pending-report-tab" data-toggle="pill" href="#tab-to-show-pending-report" role="tab" aria-controls="tab-to-show-pending-report" aria-selected="true">Pending Order</a>
+                       </li>
+                       <li class="nav-item">
+                          <a class="nav-link" id="tab-to-show-completed-report-tab" data-toggle="pill" href="#tab-to-show-completed-report" role="tab" aria-controls="tab-to-show-completed-report" aria-selected="false">Completd Orders</a>
+                       </li>
+                    </ul>
+                    <div class="tab-content" id="custom-content-below-tabContent">
+                       <div class="tab-pane fade active show" id="tab-to-show-pending-report" role="tabpanel" aria-labelledby="tab-to-show-pending-report-tab">
+                        <section class="content">
+                          <div class="container-fluid">
+                              <div class="row">
+                                  <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                      <div class="card">
+                                          <div class="card-header">
+                                              <div class="row">
+                                                  <div class="col-lg-6 col-md-6 col-sm-12">
+                                                        <h3 class="card-title">All Pending Orders Report</h3>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="card-body">
+                                              <div class="row">
+                                                  <div class="col-12">
+                                                      <div class="table-responsive">
+                                                          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="table table-bordered table-sm  nowrap  text-center text-sm" >
+                                                              <thead>
+                                                                  <tr>
+                                                                      <th>SL.No</th>
+                                                                      <th>Order Image</th>
+                                                                      <th>Order Date</th>
+                                                                      <th>Customer</th>
+                                                                      <th>Manufacturer</th>
+                                                                      <th>Delivery Date From Manufacturer</th>
+                                                                      <th>Delevered To Customer</th>
+                                                                      <th>Status</th>
+                                                                  </tr>
+                                                              </thead>
+                                                              <tbody>
+                                                               
+                                                                <tr *ngFor="let odata of this.pendingOrderList; let i=index">
+                                                                    <td>{{ i+1 }}</td>  
+                                                                    <td><span id="imageModal" (click)="imageModalOpen1(odata.order_img)"  data-toggle="modal" data-target="#myModal" ><img src="{{ this.UplaodedImageUrl }}{{ odata.order_img }}" height="50px" width="50px" ></span></td>  
+                                                                    <td>{{ odata.order_date }}</td>  
+                                                                    <td>{{ odata.cust_name }}</td> 
+                                                                    <td>{{ odata.manufac_name }}</td>
+                                                                    <td>{{ odata.date_delivery_from_manufac }}</td> 
+                                                                    <td>{{ odata.date_delivered_to_cust }}</td> 
+                                                                    <td><span class="badge badge-danger text-sm">{{ odata.order_status_name }}</span></td> 
+                                                                </tr>
+                                                              </tbody>
+                                                              </table>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </section>
+                       </div>
+                       <div class="tab-pane fade" id="tab-to-show-completed-report" role="tabpanel" aria-labelledby="tab-to-show-completed-report-tab">
+                        <section class="content">
+                          <div class="container-fluid">
+                              <div class="row">
+                                  <div class="col-12">
+                                      <div class="card">
+                                          <div class="card-header">
+                                              <div class="row">
+                                                  <div class="col-lg-6 col-md-6 col-sm-12">
+                                                        <h3 class="card-title">All Completd Orders Report</h3>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="card-body">
+                                              <div class="row">
+                                                  <div class="col-12">
+                                                      <div class="table-responsive">
+                                                          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="table table-bordered table-sm  nowrap  text-center text-sm" >
+                                                              <thead>
+                                                                  <tr>
+                                                                      <th>SL.No</th>
+                                                                      <th>Order Image</th>
+                                                                      <th>Order Date</th>
+                                                                      <th>Customer</th>
+                                                                      <th>Manufacturer</th>
+                                                                      <th>Delivery Date From Manufacturer</th>
+                                                                      <th>Delevered To Customer</th>
+                                                                      <th>Status</th>
+                                                                  </tr>
+                                                              </thead>
+                                                              <tbody>
+                                                               
+                                                                <tr *ngFor="let odata of this.completedOrderList; let i=index">
+                                                                    <td>{{ i+1 }}</td>  
+                                                                    <td><span id="imageModal" (click)="imageModalOpen1(odata.order_img)"  data-toggle="modal" data-target="#myModal" ><img src="{{ this.UplaodedImageUrl }}{{ odata.order_img }}" height="50px" width="50px" ></span></td>  
+                                                                    <td>{{ odata.order_date }}</td>  
+                                                                    <td>{{ odata.cust_name }}</td> 
+                                                                    <td>{{ odata.manufac_name }}</td>
+                                                                    <td>{{ odata.date_delivery_from_manufac }}</td> 
+                                                                    <td>{{ odata.date_delivered_to_cust }}</td> 
+                                                                    <td><span class="badge badge-danger text-sm">{{ odata.order_status_name }}</span></td> 
+                                                                </tr>
+                                                              </tbody>
+                                                              </table>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </section>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>    
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Image Modal Start here -->
+<div class="modal fade" id="myModal" role="dialog">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h5 class="text-left"> Image Preview</h5>
+               <button type="button" #closebutton class="close float-right" data-dismiss="modal">&times;</button>
+           </div>
+           <div class="modal-body text-center">
+               <img src="{{ this.defaultImagePath }}" height="400px" width="400px">
+               
+           </div>
+           <div class="modal-footer">
+               <button type="button" class="btn btn-danger" id="closeModal"  (click)="close()">Close</button>
+           </div> 
+       </div>
+  </div>
+ </div>
+<!-- Image Modal End here -->
+<app-footer></app-footer>

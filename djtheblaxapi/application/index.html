@@ -1,0 +1,120 @@
+<app-nav></app-nav>
+    <app-aside></app-aside>
+    <div class="content-wrapper mb-5">
+       <section class="content-header">
+          <div class="container-fluid">
+             <div class="row mb-2">
+                <div class="col-sm-6">
+                   <h1>View Customer</h1>
+                </div>
+                <div class="col-sm-6">
+                   <ol class="breadcrumb float-sm-right">
+                      <li class="breadcrumb-item"><a href="#">Home</a></li>
+                      <li class="breadcrumb-item active">View Customer</li>
+                   </ol>
+                </div>
+             </div>
+          </div>
+       </section>
+       <section class="content">
+          <div class="container-fluid">
+             <div class="row">
+                <div class="col-12">
+                   <div class="card">
+                      <div class="card-header">
+                         <div class="row">
+                            <div class="col-md-6">
+                               <h3 class="card-title">Customer List</h3>
+                            </div>
+                            <div class="col-md-6">
+                               <button  class="btn btn-danger float-right" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus mr-2"></i>Add Customer</button>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="card-body">
+                         <div class="row">
+                            <div class="col-12">
+                               <div class="table-responsive">
+                                  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="CustomerTable" class="table table-bordered table-sm table-hover text-center text-sm" >
+                                  <thead>
+                                     <tr>
+                                        <th>SL.No</th>
+                                        <th>Customer</th>
+                                        <th>Phone No.</th>
+                                        <th>Address</th>
+                                        <th> Action </th>
+                                     </tr>
+                                  </thead>
+                                  <tbody>
+                                     <tr *ngFor="let cdata of this.customerList; let i=index">
+                                        <td>{{ i+1 }}</td>
+                                        <td>{{ cdata.name }}</td>
+                                        <td>{{ cdata.contact }}</td>
+                                        <td>{{ cdata.address }}</td>
+                                        <td>
+                                           <a [routerLink]="['/editCustomer/', cdata.id]" class="badge badge-success mr-2"><i class="fas fa-edit text-white"></i></a>        
+                                           <a class="badge badge-danger" (click)="deleteCustomer(cdata.id)" style="cursor:pointer"><i class="fas fa-trash text-white"></i></a>
+                                        </td>
+                                     </tr>
+                                  </tbody>
+                                  </table>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </section>
+       <!-- Modal For Adding New Customer -->
+       <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog modal-lg">
+             <div class="modal-content">
+                <div class="modal-header">
+                   <h5 class="text-left">Add Customer</h5>
+                   <button type="button" #closebutton class="close float-right" data-dismiss="modal">&times;</button>
+                </div>
+                <form class="form-horizontal" [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+                <input type="hidden" formControlName="id">
+                <div class="modal-body text-center">
+                   <div class="row">
+                      <div class="col-md-6">
+                         <div class="form-group row">
+                            <label for="inputforname" class="col-sm-2 col-form-label">Name</label>
+                            <div class="col-sm-10">
+                               <input type="text" class="form-control" formControlName="name" id="inputforname" placeholder="Customer Name">
+                            </div>
+                         </div>
+                      </div>
+                      <div class="col-md-6">
+                         <div class="form-group row">
+                            <label for="inputforphone" class="col-sm-2 col-form-label">Contact</label>
+                            <div class="col-sm-10">
+                               <input type="number" class="form-control" formControlName="contact" id="inputforphone" placeholder="Enter Mobile Number">
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="row">
+                      <div class="col-md-12">
+                         <div class="form-group row">
+                            <label for="inputofraddress" class="col-sm-1 col-form-label">Address</label>
+                            <div class="col-sm-11">
+                               <textarea class="form-control" formControlName="address" id="inputforaddress" name="address" placeholder="Enter Customer Address">  </textarea>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="modal-footer">
+                   <button type="submit" class="btn btn-info" [disabled]="!customerForm.valid">{{pageTitle}} Customer</button>
+                   <a routerLink="/viewCustomer" type="submit" class="btn btn-default float-right">Cancel</a>
+                </div>
+                </form>
+             </div>
+          </div>
+       </div>
+       <!-- End Here -->
+    </div>
+    <app-footer></app-footer>

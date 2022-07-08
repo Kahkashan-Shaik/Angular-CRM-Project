@@ -1,0 +1,210 @@
+<app-nav></app-nav>
+                <app-aside></app-aside>
+                <div class="content-wrapper mb-5">
+                <section class="content-header">
+                <div class="container-fluid">
+                  <div class="row mb-2">
+                    <div class="col-sm-6">
+                      <h1>{{pageTitle}} Order</h1>
+                    </div>
+                    <div class="col-sm-6">
+                      <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">{{pageTitle}} Order</li>
+                      </ol>
+                    </div>
+                  </div>
+                </div><!-- /.container-fluid -->
+              </section>
+              <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                        <div class="card card-secondary">
+                        <div class="card-header">
+                          <h3 class="card-title">{{pageTitle}} Order</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+                          <input type="hidden" formControlName="id">
+                          <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 pr-3 pl-3">
+                                        <div class="form-group row">
+                                            <label for="inputforname" class=" col-form-label text-sm">Order Date</label>
+                                            <input type="date" class="form-control " formControlName="order_date" id="order_date">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputforname" class=" col-form-label text-sm">Delivered To Customer</label>
+                                            <input type="date" class="form-control " formControlName="date_delivered_to_cust" id="date_delivered_to_cust" >
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputforname" class=" col-form-label text-sm">Delivered From Manufacturer</label>
+                                            <input type="date" class="form-control " formControlName="date_delivered_from_manufac" id="date_delivered_from_manufac" >
+                                        </div> 
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-12 pr-3 pl-3">
+                                      <div class="form-group row">
+                                          <label for="inputforcustomer" class=" col-form-label text-sm">Select Customer</label>
+                                          <select class="form-control text-xs  col-sm-9" (change)="select2($event)"  formControlName="cust_id" id="cust_id">
+                                            <option value="">---Select Customer Name---</option>
+                                            <option *ngFor="let cdata of customerList" [value]="cdata.id" > 
+                                               {{ cdata.cust_name }}
+                                            </option>
+                                          </select>
+                                          <button type="button" class="btn btn-success col-sm-2 ml-1" data-toggle="modal" data-target="#myModal" (click)="add_customer()"><i class="fas fa-plus text-md"></i></button>
+                                      </div> 
+                                      <div class="form-group row">
+                                          <label for="inputforname" class=" col-form-label text-sm">Select Manufacturer</label>
+                                          <select class="form-control text-xs col-sm-9" formControlName="manufac_id" id="manufac_id">
+                                            <option value="">---Select Manufactuere Name---</option>
+                                            <option *ngFor="let manufac_data of manufacturerList" [value]="manufac_data.id" > 
+                                               {{ manufac_data.manufac_name }}
+                                            </option>
+                                          </select>
+                                          <button type="button" class="btn btn-success col-sm-2 ml-1"  data-toggle="modal" data-target="#myModalManufac" (click)="add_manfacturer()"><i class="fas fa-plus text-md"></i></button>
+                                      </div> 
+                                      <div class="form-group row">
+                                            <label for="inputforname" class=" col-form-label text-sm">Select Image</label>
+                                            <input type="file" class="form-control" id="order_img" name="order_img" (change)="onSelectedFile($event)">
+                                        </div> 
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 pr-3 pl-3">
+                                        <div class="form-group row">
+                                            <label for="inputforname" class=" col-form-label text-sm">Delivery Date to Customer</label>
+                                            <input type="date" class="form-control " formControlName="date_delivery_to_cust" id="date_delivery_to_cust" >
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputforname" class=" col-form-label text-sm">Delivery date from the manufacturer</label>
+                                            <input type="date" class="form-control " formControlName="date_delivery_from_manufac" id="date_delivery_from_manufac" >
+                                        </div>
+                                        <div class="form-group row">
+                                          <label for="inputforname" class=" col-form-label text-sm">Select Order Status </label>
+                                          <select class="form-control  text-xs" formControlName="order_status_id" id="order_status_id">
+                                            <option value="">---Select Order Status ---</option>
+                                            <option *ngFor="let ordertype of ordertypesList" [value]="ordertype.id" > 
+                                               {{ ordertype.order_type }}
+                                            </option>
+                                          </select>
+                                      </div> 
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                      <div class="form-group row">
+                                        <label for="inputforname" class=" col-form-label text-sm">Description </label>
+                                        <textarea class="form-control" placeholder="Enter Small Description" formControlName="order_desc"></textarea>
+                                      </div>
+                                    </div>
+                                </div>   
+                            </div>
+                          <!-- /.card-body -->
+                          <div class="card-footer">
+                            <button type="submit" class="btn btn-secondary">{{pageTitle}} Order</button>
+                            <a routerLink="/viewOrder" type="submit" class="btn btn-default float-right">Cancel</a>
+                          </div>
+                          <!-- /.card-footer -->
+                        </form>
+                      </div>
+                        </div>
+                    </div>
+                </div>
+              </section>
+              <!-- Modal For adding new Customer -->
+              <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+                   <div class="modal-content">
+                      <div class="modal-header">
+                         <h5 class="text-left">Add Customer</h5>
+                      </div>
+                      <form class="form-horizontal" [formGroup]="customerForm" (ngSubmit)="addCustomer()" id="createCustomer" enctype="multipart/form-data">
+                      <input type="hidden" formControlName="id">
+                      <div class="modal-body text-center">
+                         <div class="row">
+                            <div class="col-md-6">
+                               <div class="form-group row">
+                                  <label for="inputforname" class="col-sm-2 col-form-label">Name</label>
+                                  <div class="col-sm-10">
+                                     <input type="text" class="form-control"  id="inputforname" placeholder="Customer Name" formControlName="cust_name">
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-md-6">
+                               <div class="form-group row">
+                                  <label for="inputforphone" class="col-sm-2 col-form-label">Contact</label>
+                                  <div class="col-sm-10">
+                                   <input type="text"  class="form-control" id="inputforphone" placeholder="Enter Phone Number" formControlName="cust_phone">
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="row">
+                            <div class="col-md-12">
+                               <div class="form-group row">
+                                  <label for="inputofraddress" class="col-sm-1 col-form-label">Desc</label>
+                                  <div class="col-sm-11">
+                                     <textarea class="form-control"  name="address" id="inputofraddress" placeholder="Enter Customer Address" formControlName="cust_desc">  </textarea>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="modal-footer">
+                         <button type="submit" class="btn btn-info" >Add Customer</button>
+                         <a  #closebutton  data-dismiss="modal" class="btn btn-default float-right">Cancel</a>
+                      </div>
+                      </form>
+                   </div>
+                </div>
+             </div>
+              <!-- End here -->
+              <!-- Modal for adding New Manufacturer -->
+              <div class="modal fade" id="myModalManufac" role="dialog">
+                <div class="modal-dialog modal-lg">
+                   <div class="modal-content">
+                      <div class="modal-header">
+                         <h5 class="text-left">Add Manufacturer</h5>
+                      </div>
+                      <form class="form-horizontal" [formGroup]="manufacturerForm" (ngSubmit)="addManufacturer()" id="createCustomer">
+                      <input type="hidden" formControlName="id">
+                      <div class="modal-body text-center">
+                         <div class="row">
+                            <div class="col-md-6">
+                               <div class="form-group row">
+                                  <label for="inputforname" class="col-sm-2 col-form-label">Name</label>
+                                  <div class="col-sm-10">
+                                     <input type="text" class="form-control"  id="inputforname" placeholder="Manufacturer Name" formControlName="manufac_name">
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-md-6">
+                               <div class="form-group row">
+                                  <label for="inputforphone" class="col-sm-2 col-form-label">Contact</label>
+                                  <div class="col-sm-10">
+                                   <input type="text"  class="form-control" id="inputforphone" placeholder="Enter Phone Number" formControlName="manufac_phone">
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="row">
+                            <div class="col-md-12">
+                               <div class="form-group row">
+                                  <label for="inputofraddress" class="col-sm-1 col-form-label">Desc</label>
+                                  <div class="col-sm-11">
+                                     <textarea class="form-control"  name="address" id="inputofraddress" placeholder="Enter Manufacturer Address" formControlName="manufac_desc">  </textarea>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="modal-footer">
+                         <button type="submit" class="btn btn-info" >Add Manufacturer</button>
+                         <a  #closebutton1  data-dismiss="modal" class="btn btn-default float-right">Cancel</a>
+                      </div>
+                      </form>
+                   </div>
+                </div>
+             </div>
+             <!-- End Here -->
+                </div>
+                <app-footer></app-footer>
